@@ -1,0 +1,87 @@
+﻿<Window x:Class="PokerRangeExplorer.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Poker Range Explorer" Height="800" Width="900">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Panel izquierdo --><!--
+        <Border Grid.Column="0" Background="LightGray" Padding="10">
+            <StackPanel>
+                <Button Name="LoadFilesButton" Content="Cargar JSONs" Click="LoadFiles_Click" Margin="0,0,0,5"/>
+                <Button Name="LoadDirectoryButton" Content="Cargar Carpeta" Click="LoadDirectory_Click" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Rangos Cargados:" FontWeight="Bold" Margin="0,0,0,5"/>
+                <ListBox Name="RangeListBox" SelectionChanged="RangeList_SelectionChanged" Height="350"/>
+
+                <StackPanel Margin="0,10,0,0">
+                    <TextBlock Name="StatusText" FontWeight="Bold" Foreground="Green"/>
+                    <TextBlock Name="ErrorText" FontWeight="Bold" Foreground="Red" TextWrapping="Wrap"/>
+                </StackPanel>
+
+                <Button Name="ClearButton" Content="Limpiar Todo" Click="Clear_Click" Margin="0,10,0,0"/>
+            </StackPanel>
+        </Border>-->
+
+        <!-- Panel izquierdo -->
+        <Border Grid.Column="0" Background="LightGray" Padding="10">
+            <StackPanel>
+                <Button Name="LoadFilesButton" Content="Cargar JSONs" Click="LoadFiles_Click" Margin="0,0,0,5"/>
+                <Button Name="LoadDirectoryButton" Content="Cargar Carpeta" Click="LoadDirectory_Click" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Rangos Cargados:" FontWeight="Bold" Margin="0,0,0,5"/>
+                <ListBox Name="RangeListBox" SelectionChanged="RangeList_SelectionChanged" Height="350"/>
+
+                <TextBlock Text="HERO" FontWeight="Bold" Margin="0,10,0,5"/>
+                <WrapPanel Name="HeroPanel" Orientation="Horizontal" ItemHeight="30" ItemWidth="100" />
+
+                <TextBlock Text="VILLAIN / CONTEXTO" FontWeight="Bold" Margin="0,10,0,5"/>
+                <StackPanel Name="VillainPanel"/>
+
+                <Button Content="Limpiar Todo" Click="Clear_Click" Margin="0,10,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Panel derecho - Matriz de manos -->
+        <Grid Grid.Column="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Name="RangeTitle" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+                <StackPanel Margin="0,0,10,0">
+                    <TextBlock Text="Hero:" FontWeight="Bold"/>
+                    <ComboBox Name="HeroComboBox" Width="200" SelectionChanged="Hero_SelectionChanged"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Villain/Contexto:" FontWeight="Bold"/>
+                    <ComboBox Name="VillainComboBox" Width="400" SelectionChanged="Villain_SelectionChanged"/>
+                </StackPanel>
+            </StackPanel>
+
+            <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <UniformGrid Name="HandGrid" Rows="13" Columns="13" 
+                           Width="520" Height="520" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center"/>
+            </ScrollViewer>
+
+            <!-- Resultado de selección -->
+            <Border Grid.Row="3" Background="LightYellow" Padding="10" Margin="0,10,0,0">
+                <StackPanel>
+                    <TextBlock Text="Resultado:" FontWeight="Bold"/>
+                    <TextBlock Name="SelectedHandResult" FontSize="14" FontWeight="Bold" 
+                             Foreground="DarkBlue" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
